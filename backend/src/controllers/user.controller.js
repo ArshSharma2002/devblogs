@@ -27,9 +27,11 @@ const registerUser = async (req, res) => {
             throw new ApiError(400, "Email & User name is required !!!")
         }
 
-        const existingUser = User.findOne({
-            $or: [{ username }, { email }]
+        const existingUser = await User.findOne({
+            $or: [{ username:username }, { email:email }]
         })
+
+        console.log("Existing User: ", existingUser )
 
         if (existingUser) {
             throw new ApiError(400, "User already exists !!!")
@@ -41,6 +43,8 @@ const registerUser = async (req, res) => {
             email,
             password
         })
+
+        console.log("user created !");
 
         const createdUser = await User.findById(newUser._id).select("-password -refreshtoken")
 

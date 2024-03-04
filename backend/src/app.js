@@ -26,5 +26,8 @@ app.use(express.static("public"))
 import userRoutes from './routes/user.routes.js'
 app.use('/api/v1/user', userRoutes)
 
+import blogRoutes from './routes/blog.routes.js'
+app.use('/api/v1/blogs', blogRoutes)
+
 
 export default app
