@@ -1,20 +1,24 @@
+import jwt from 'jsonwebtoken'
 import { User } from '../models/user.model.js'
 import { ApiError } from '../utility/ApiError.js'
 import { ApiResponse } from '../utility/ApiResponse.js'
+import bcrypt from 'bcrypt'
 
-const generateTokens = async (id) => {
+const generateTokens = async (userId) => {
     try {
-        const user = User.findById(id)
-        if (!user) {
-            throw new ApiError(400, "User doesn't exist !!!")
-        }
-        const accesstoken = await user.generateAccessToken()
-        const refreshtoken = await user.generateRefreshToken()
+        const user = await User.findById(userId)
+        const accesstoken = user.generateAccessToken()
+        const refreshtoken = user.generateRefreshToken()
+
+        // storing refreshToken of user in the database
+        user.refreshtoken = refreshtoken
+        await user.save({ validateBeforeSave: false })
 
         return { accesstoken, refreshtoken }
 
     } catch (error) {
-        throw new ApiError(500, "Internal Server Error !!!")
+        console.log("Error: ", error)
+        throw new ApiError(500, "Something went wrong generating tokens !!!")
     }
 }
 
@@ -28,10 +32,10 @@ const registerUser = async (req, res) => {
         }
 
         const existingUser = await User.findOne({
-            $or: [{ username:username }, { email:email }]
+            $or: [{ username: username }, { email: email }]
         })
 
-        console.log("Existing User: ", existingUser )
+        console.log("Existing User: ", existingUser)
 
         if (existingUser) {
             throw new ApiError(400, "User already exists !!!")
@@ -48,11 +52,13 @@ const registerUser = async (req, res) => {
 
         const createdUser = await User.findById(newUser._id).select("-password -refreshtoken")
 
+        console.log("created user: ", createdUser)
+
         if (!createdUser) {
             throw new ApiError(404, "User not found !!!")
         }
 
-        return res.this.status(200).json(new ApiResponse(200, createdUser, "User registration Success !"))
+        return res.status(200).json(new ApiResponse(200, createdUser, "User registration Success !"))
 
     } catch (error) {
         console.error(error)
@@ -69,24 +75,24 @@ const loginUser = async (req, res) => {
         }
 
         const verifyUser = await User.find({
-            $or: [{ username }, { email }]
+            $or: [{ username: username }, { email: email }]
         })
 
         if (!verifyUser) {
             throw new ApiError(400, "Wrong Credentials !!!")
         }
 
-        const checkPassword = await verifyUser.isPasswordCorrect(password)
+        // console.log(verifyUser)
+
+        const checkPassword = await bcrypt.compare(password, verifyUser[0].password)
+
+        // console.log("checked password: ", checkPassword)
 
         if (!checkPassword) {
             throw new ApiError(400, "Wrong Password !!!")
         }
 
-        const { accesstoken, refreshtoken } = generateTokens(verifyUser._id)
-
-        verifyUser.refreshtoken = refreshtoken
-
-        await verifyUser.save({ validateBeforeSave: false })
+        const { accesstoken, refreshtoken } = await generateTokens(verifyUser[0]._id)
 
         const loggedInUser = await User.findById(verifyUser._id).select("-password -refreshtoken")
 
@@ -96,7 +102,7 @@ const loginUser = async (req, res) => {
             secure: true
         }
 
-        return res.status(200).cookie("accessToken", accesstoken, options).cookie("refreshtoken", refreshtoken, options).json(
+        return res.status(200).cookie("accesstoken", accesstoken, options).cookie("refreshtoken", refreshtoken, options).json(
             new ApiResponse(200, {
                 user: loggedInUser,
                 accesstoken,
@@ -112,16 +118,17 @@ const loginUser = async (req, res) => {
     }
 }
 
-const logoutUser = async (req, rs) => {
+const logoutUser = async (req, res) => {
     try {
-        await User.findByIdAndUpdate(req.user._id, {
-            // clearing refreshToken
-            $set: { refreshToken: undefined }
-        },
+
+        await User.findByIdAndUpdate(req.user._id,
             {
-                // so, that response will contain refreshToken: undefined (i.e. its new value)
+                $set: { refreshToken: undefined }
+            },
+            {
                 new: true
-            })
+            }
+        )
 
         const options = {
             httpOnly: true,
@@ -130,12 +137,12 @@ const logoutUser = async (req, rs) => {
 
         return res
             .status(200)
-            .clearCookie("accessToken", options)
-            .clearCookie("refreshToken", options)
+            .clearCookie("accesstoken", options)
+            .clearCookie("refreshtoken", options)
             .json(new ApiResponse(200, {}, "User logged out Successfully !!!"))
 
     } catch (error) {
-        throw new ApiError(500, "Internal Server Error !!!")
+        throw new ApiError(500, "Error logging out !!!")
     }
 }
 

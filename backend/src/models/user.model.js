@@ -44,34 +44,28 @@ userSchema.pre("save", async function(next){
     next()
 })
 
-userSchema.methods.isPasswordCorrect = function(password){
-    return bcrypt.compare(password, this.password)
-}
-
-userSchema.methods.generateAccessToken = function () {
+userSchema.methods.generateAccessToken = function(){
     return jwt.sign({
-        _id:this._id,
-        username:this.username,
-        email:this.email
+        _id: this._id,
+        username: this.username,
+        fullname: this.fullname,
+        email: this.email
     }, 
     process.env.ACCESSTOKEN_SECRET,
     {
         expiresIn: process.env.ACCESSTOKEN_EXPIRY
-    }
-    )
+    })
 }
 
-userSchema.methods.generateRefreshToken = function () {
+userSchema.methods.generateRefreshToken = function(){
     return jwt.sign({
-        _id:this._id,
-        username:this.username,
-        email:this.email
-    }, 
+        _id: this._id,
+    },
     process.env.REFRESHTOKEN_SECRET,
     {
         expiresIn: process.env.REFRESHTOKEN_EXPIRY
-    }
-    )
+    })
 }
+
 
 export const User = mongoose.model("User", userSchema)

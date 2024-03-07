@@ -24,6 +24,7 @@ const blogSchema = new mongoose.Schema({
         type: String,
     }
 
-})
+}, 
+{timestamps: true})
 
 export const Blog = mongoose.model("Blog", blogSchema)

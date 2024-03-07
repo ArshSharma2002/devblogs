@@ -10,6 +10,8 @@ const createBlogs = async (req, res) =>{
             throw new ApiError(400, "User not authenticated !!!")
         }
 
+        console.log("User id: ", _id)
+
         const {title, description, tag, source} = req.body
 
         if (!(title && description && tag && source)) {
@@ -24,11 +26,13 @@ const createBlogs = async (req, res) =>{
             source
         })
 
+        console.log("New blog: ", newBlog)
+
         return res.status(200).json(new ApiResponse(200, newBlog, "Blog created success !"))
 
         
     } catch (error) {
-        throw new ApiError(500, 'Internal Server Error !!!')
+        throw new ApiError(500, 'Error creating blog !!!')
     }
 }
 
@@ -78,8 +82,8 @@ const updateBlogById = async (req, res) =>{
         {
             // mongoDB operations
             $set:{
-                title: title,
-                description: description,
+                description:description,
+                title:title
             }
         },
         // returns data after updation.
