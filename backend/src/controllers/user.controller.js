@@ -26,6 +26,11 @@ const registerUser = async (req, res) => {
     try {
 
         const { username, fullname, email, password } = req.body
+        const isAdmin = false;
+
+        if(username.includes("admin@")){
+            isAdmin=true
+        }
 
         if (!(username && email && password && fullname)) {
             throw new ApiError(400, "Email & User name is required !!!")
@@ -45,7 +50,8 @@ const registerUser = async (req, res) => {
             username,
             fullname,
             email,
-            password
+            password,
+            isAdmin
         })
 
         console.log("user created !");
@@ -146,4 +152,4 @@ const logoutUser = async (req, res) => {
     }
 }
 
-export { registerUser, loginUser, logoutUser }
+export {registerUser, loginUser, logoutUser}
