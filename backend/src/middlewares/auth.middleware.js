@@ -4,6 +4,7 @@ import { User } from "../models/user.model.js"
 const verifyJWT = async(req, res, next)=>{
     try {
         
+        // console.log("inside middleware...")
         const token = req.cookies.accesstoken
         // console.log("Token Val : " + token)
         

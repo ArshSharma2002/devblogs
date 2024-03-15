@@ -60,13 +60,39 @@ header {
   height: 100vh;
 }
 
+.bg-blur{
+  backdrop-filter: blur(150px);
+}
+
 .img-fluid {
   width: 12%;
   height: 12%;
-
 }
 
+li#deletebtn:hover{
+  cursor: pointer;
+  background-color: rgb(240, 197, 197);
+}
 
+li#editbtn:hover{
+  cursor: pointer;
+  background-color: rgb(192, 236, 192);
+}
+
+/* ***** handling colors of auth buttons ***** */
+.btn-auth{
+  color: white;
+}
+
+.btn-auth:hover{
+  color: #3F2341;
+}
+
+.auth-btn:hover .btn-auth{
+  color: #3F2341;
+}
+
+/* ********************************************* */
 
 #navlogo {
   width: 107px;
@@ -88,9 +114,11 @@ header {
   }
 }
 
-/* @media (min-width: 769px) {
-  .gradient-custom-2 {
-    border-top-right-radius: .3rem;
-    border-bottom-right-radius: .3rem;
+@media only screen and (max-width: 430px) {
+  .img-fluid {
+    width: 30%;
+    height: 30%;
   }
-} */
+}
+
+
