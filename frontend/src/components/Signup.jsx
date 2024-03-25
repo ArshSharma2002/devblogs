@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import signupImg from '../images/signup-img.jpg'
+import signupImg from '../images/illustrations/signup.gif'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -78,22 +78,22 @@ function Signup() {
                       <form onSubmit={handleOnSignup}>
 
                         <div className="form-outline mb-4">
-                          <label className="form-label" for="username">User Name</label>
+                          <label className="form-label" htmlFor="username">User Name</label>
                           <input type="text" id="username" className="form-control"
                             placeholder="User Name" onChange={(e)=>setUsername(e.target.value)} value={username}/>
                         </div>
                         <div className="form-outline mb-4">
-                          <label className="form-label" for="fullname">Full Name</label>
+                          <label className="form-label" htmlFor="fullname">Full Name</label>
                           <input type="text" id="fullname" className="form-control"
                             placeholder="Full Name" onChange={(e)=>setFullname(e.target.value)} value={fullname}/>
                         </div>
                         <div className="form-outline mb-4">
-                          <label className="form-label" for="email">Email</label>
+                          <label className="form-label" htmlFor="email">Email</label>
                           <input type="email" id="email" className="form-control"
                             placeholder="Email address" onChange={(e)=>setEmail(e.target.value)} value={email}/>
                         </div>
                         <div className="form-outline mb-4">
-                          <label className="form-label" for="password">Password</label>
+                          <label className="form-label" htmlFor="password">Password</label>
                           <input type="password" id="password" className="form-control" placeholder="Password" onChange={(e)=>setPassword(e.target.value)} value={password}/>
                         </div>
 
@@ -111,10 +111,10 @@ function Signup() {
 
                     </div>
                   </div>
-                  <div className="col-lg-6 d-flex align-items-center gradient-custom-2">
+                  <div className="col-lg-6 d-flex align-items-center">
                     <div className="text-white px-3 py-4 p-md-5 mx-md-4">
-                      <h4 className="mb-4">Signup now on DevBlogs !</h4>
-                      <img className="illustrations huerotate" src={signupImg}></img>
+                      {/* <h4 className="mb-4">Signup now on DevBlogs !</h4> */}
+                      <img className="illustrations bg-white huerotate" src={signupImg}></img>
                     </div>
                   </div>
                 </div>

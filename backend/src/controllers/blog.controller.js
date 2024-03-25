@@ -39,8 +39,27 @@ const createBlogs = async (req, res) =>{
 const getBlogs = async (req, res) =>{
     try {
         
+        // const {_id} = req.user
+        // const blogs = await Blog.find({publisher:_id})     
+        const blogs = await Blog.find({})     
+        
+        if (!blogs) {
+            throw new ApiError(404, "Blogs not found !!!")
+        }
+
+        return res.status(200).json(new ApiResponse(200, blogs, "Blogs fetched success !"))
+        
+    } catch (error) {
+        throw new ApiError(500, 'Internal Server Error !!!')
+    }
+}
+
+const getMyBlogs = async (req, res) =>{
+    try {
+        
         const {_id} = req.user
         const blogs = await Blog.find({publisher:_id})     
+        // const blogs = await Blog.find({})     
         
         if (!blogs) {
             throw new ApiError(404, "Blogs not found !!!")
@@ -119,4 +138,5 @@ const deleteBlogById = async (req, res) =>{
 
 }
 
-export {createBlogs, getBlogs, getBlogById, updateBlogById, deleteBlogById}
+
+export {createBlogs, getBlogs, getBlogById, updateBlogById, deleteBlogById, getMyBlogs}

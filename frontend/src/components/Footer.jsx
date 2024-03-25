@@ -3,13 +3,13 @@ import React from 'react'
 function Footer() {
   return (
     <>
-      <div className="bg-violet position-sticky bottom-0 start-0 end-0">
+      <div className="bg-violet position-fixed start-0 end-0 bottom-0">
         <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 border-top">
           <div className="col-md-4 d-flex align-items-center">
             <a href="/" className="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
               <svg className="bi" width="30" height="24"><use href="#bootstrap"></use></svg>
             </a>
-            <span className="mb-3 mb-md-0 text-white">© 2022 Company, Inc</span>
+            <span className="mb-3 mb-md-0 text-white text-center">© 2024 DevBlogs, India</span>
           </div>
 
           <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">

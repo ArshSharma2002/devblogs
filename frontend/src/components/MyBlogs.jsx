@@ -3,7 +3,7 @@ import BlogPost from './BlogPost'
 import { useOutletContext } from 'react-router-dom'
 import Login from './Login'
 
-function Blogs() {
+function MyBlogs() {
 
   const [blogs, setBlogs] = useState([])
   const [isLoggedin] = useOutletContext()
@@ -26,7 +26,7 @@ function Blogs() {
       })
 
       const deletedBlog = await response.json()
-      getBlogs()
+      getMyBlogs()
       console.log(deletedBlog)
 
     } catch (error) {
@@ -34,10 +34,10 @@ function Blogs() {
     }
   }
 
-  const getBlogs = async () => {
+  const getMyBlogs = async () => {
     try {
-      console.log("fetching blogs...")
-      const url = 'http://localhost:8000/api/v1/blogs'
+      console.log("fetching my blogs...")
+      const url = 'http://localhost:8000/api/v1/blogs/myblogs'
       const response = await fetch(url, {
         method: 'GET',
         redirect: 'follow',
@@ -57,7 +57,7 @@ function Blogs() {
   }
 
   useEffect(() => {
-    getBlogs()
+    getMyBlogs()
   }, [])
 
 
@@ -71,4 +71,4 @@ function Blogs() {
   )
 }
 
-export default Blogs
+export default MyBlogs

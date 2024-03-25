@@ -1,10 +1,11 @@
 import express from "express"
-import { createBlogs, deleteBlogById, getBlogById, getBlogs, updateBlogById } from "../controllers/blog.controller.js"
+import { createBlogs, deleteBlogById, getBlogById, getBlogs, updateBlogById, getMyBlogs } from "../controllers/blog.controller.js"
 import {verifyJWT} from '../middlewares/auth.middleware.js'
 
 const router = express.Router()
 
 router.get('/',verifyJWT, getBlogs)
+router.get('/myblogs',verifyJWT, getMyBlogs)
 router.get('/:blogid', verifyJWT, getBlogById)
 router.post('/create',verifyJWT, createBlogs)
 router.put('/update/:blogid',verifyJWT, updateBlogById)

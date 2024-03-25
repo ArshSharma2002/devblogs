@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import loginImg from '../images/signup-img.jpg'
-import { useNavigate } from 'react-router-dom'
+import loginImg from '../images/illustrations/login.gif'
+import { useNavigate, useOutletContext } from 'react-router-dom'
 
 function Login() {
 
+    const [isLoggedin, setIsLoggedin] = useOutletContext()
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -27,11 +28,12 @@ function Login() {
 
             const loggedinUser = await response.json()
 
+            setIsLoggedin(true)
+
             console.log(loggedinUser)
 
         } catch (error) {
             console.log("Error logging in: ", error)
-
         }
     }
 
@@ -44,6 +46,7 @@ function Login() {
         setEmail('')
         setPassword('')
         navigate('/')
+        
     }
 
     return (
@@ -53,10 +56,11 @@ function Login() {
                     <div className="col-xl-10">
                         <div className="bg-light text-black">
                             <div className="row g-0">
-                                <div className="col-lg-6 d-flex align-items-center gradient-custom-2">
+                                <div className="col-lg-6 d-flex align-items-center">
                                     <div className="text-white px-3 py-4 p-md-5 mx-md-4">
-                                        <h4 className="mb-4">Login now on DevBlogs !</h4>
+                                        {/* <h4 className="mb-4 text-dark">Login now on DevBlogs !</h4> */}
                                         <img className="text-center illustrations huerotate" src={loginImg}></img>
+                                        
                                     </div>
                                 </div>
                                 <div className="col-lg-6">
@@ -66,17 +70,17 @@ function Login() {
                                         </div>
                                         <form onSubmit={handleOnLogin}>
                                             <div className="form-outline mb-4">
-                                                <label className="form-label" for="username">User Name</label>
+                                                <label className="form-label" htmlFor="username">User Name</label>
                                                 <input type="text" id="username" className="form-control"
                                                     placeholder="User Name" value={username} onChange={(e) => setUsername(e.target.value)} />
                                             </div>
                                             <div className="form-outline mb-4">
-                                                <label className="form-label" for="email">Email</label>
+                                                <label className="form-label" htmlFor="email">Email</label>
                                                 <input type="email" id="email" className="form-control"
                                                     placeholder="Email address" value={email} onChange={(e) => setEmail(e.target.value)} />
                                             </div>
                                             <div className="form-outline mb-4">
-                                                <label className="form-label" for="password">Password</label>
+                                                <label className="form-label" htmlFor="password">Password</label>
                                                 <input type="password" id="password" className="form-control" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                                             </div>
                                             <div className="text-center pt-1 mb-5 pb-1">

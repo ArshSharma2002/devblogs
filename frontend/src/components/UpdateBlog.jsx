@@ -57,12 +57,12 @@ function UpdateBlog() {
                                             </div>
                                             <form onSubmit={handleOnUpdate}>
                                                 <div className="form-outline mb-4">
-                                                    <label className="form-label" for="newtitle">New Title</label>
+                                                    <label className="form-label" htmlFor="newtitle">New Title</label>
                                                     <input type="text" id="newtitle" className="form-control"
                                                         placeholder="New Title" value={newTitle} onChange={(e) => setNewTitle(e.target.value)} />
                                                 </div>
                                                 <div className="form-outline mb-4">
-                                                    <label className="form-label" for="newdescription">New Description</label>
+                                                    <label className="form-label" htmlFor="newdescription">New Description</label>
                                                     <textarea type="text" id="newdescription" rows='3' className="form-control"
                                                         placeholder="New Description" value={newDescripiton} onChange={(e) => setNewDescripiton(e.target.value)} />
                                                 </div>

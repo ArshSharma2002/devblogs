@@ -2,7 +2,7 @@ import React from 'react'
 import navlogo from '../images/logos/logo-white-transparent.png'
 import { Link, useNavigate } from 'react-router-dom'
 
-function Navbar() {
+function Navbar({ isLoggedin, setIsLoggedin }) {
 
   const navigate = useNavigate()
 
@@ -19,9 +19,11 @@ function Navbar() {
         }
       })
 
-      // console.log("response: ", response)
-
       const loggedoutUser = await response.json()
+
+      if (loggedoutUser.statusCode == 200) {
+        setIsLoggedin(false)
+      }
 
       console.log(loggedoutUser)
 
@@ -46,42 +48,27 @@ function Navbar() {
               <li className="nav-item">
                 <Link className="nav-link text-white" aria-current="page" to="/">Home</Link>
               </li>
-              {/* <li className="nav-item">
-                <Link className="nav-link text-white" aria-current="page" to="/about">About</Link>
-              </li> */}
-              <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blogs</a>
+              <li className="nav-item dropdown" >
+                <a className={`nav-link dropdown-toggle text-white ${!isLoggedin?'notAllowed':''}`} href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" disabled={!isLoggedin} >Blogs</a>{/* disabled={!isLoggedin} */}
                 <ul className="dropdown-menu">
-                  <li><Link className="dropdown-item" to="/createblog">Create Blog</Link></li>
+                  <li><Link className="dropdown-item" to="/myblogs">My Blogs</Link></li>
                   <li><hr className="dropdown-divider" /></li>
                   <li><Link className="dropdown-item" to="/blogs">All Blogs</Link></li>
+                  <li><hr className="dropdown-divider" /></li>
+                  <li><Link className="dropdown-item" to="/createblog">Create Blog</Link></li>
                 </ul>
               </li>
             </ul>
             <div className="d-flex align-items-center flex-column flex-lg-row">
-              {/* <form className="d-flex">
-                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                <button className="btn btn-outline-light me-4" type="submit">Search</button>
-              </form> */}
-              <button className="btn auth-btn btn-outline-light me-4" type=""><Link className='btn-auth text-decoration-none' to="/login" >Login</Link></button>
-              <button className="btn auth-btn btn-outline-light me-4" type=""><Link className='btn-auth text-decoration-none' to="/signup" >Signup</Link></button>
-              <button className="btn auth-btn btn-outline-light" type="button" onClick={handleOnLogout}>Logout</button>
+              {!isLoggedin ? <>
+                <button className="btn auth-btn btn-outline-light me-4" type=""><Link className='btn-auth text-decoration-none' to="/login" >Login</Link></button>
+                <button className="btn auth-btn btn-outline-light me-4" type=""><Link className='btn-auth text-decoration-none' to="/signup" >Signup</Link></button>
+              </> :
+                <button className="btn auth-btn btn-outline-light" type="button" onClick={handleOnLogout}>Logout</button>}
             </div>
           </div>
         </div>
       </nav>
-      {/* <nav className="navbar bg-violet position-sticky top-0 z-1">
-        <div className="container-fluid">
-          <a className="navbar-brand text-light"><img id='navlogo' className='m-2' src={navlogo}></img></a>
-          <form className="d-flex">
-            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-            <button className="btn btn-outline-light me-4" type="submit">Search</button>
-            <button className="btn auth-btn btn-outline-light me-2" type=""><Link className='btn-auth text-decoration-none' to="/login" >Login</Link></button>
-            <button className="btn auth-btn btn-outline-light me-2" type=""><Link className='btn-auth text-decoration-none' to="/signup" >Signup</Link></button>
-            <button className="btn auth-btn btn-outline-light" type="button" onClick={handleOnLogout}>Logout</button>
-          </form>
-        </div>
-      </nav> */}
     </>
   )
 }

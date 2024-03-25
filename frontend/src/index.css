@@ -37,9 +37,9 @@ body {
 }
 
 .illustrations{
-  mix-blend-mode: multiply;
-  width: 90%;
-  height: 90%;
+  /* mix-blend-mode: multiply; */
+  width: 80%;
+  height: 80%;
 }
 
 div.card {
@@ -52,12 +52,12 @@ div.card-footer button {
 }
 
 div.card:hover {
-  box-shadow: 1px 3px 10px 1px #938D99;
+  box-shadow: 1px 1px 5px #938D99;
 }
 
 header {
   backdrop-filter: blur(50px);
-  height: 100vh;
+  height: 90vh;
 }
 
 .bg-blur{
@@ -67,6 +67,10 @@ header {
 .img-fluid {
   width: 12%;
   height: 12%;
+}
+
+.notAllowed{
+  cursor: not-allowed;
 }
 
 li#deletebtn:hover{

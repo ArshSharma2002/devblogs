@@ -14,15 +14,19 @@ import Signup from './components/Signup.jsx'
 import Blogs from './components/Blogs.jsx'
 import CreateBlog from './components/CreateBlog.jsx'
 import UpdateBlog from './components/UpdateBlog.jsx'
+import PageNotFound from './components/PageNotFound.jsx'
+import MyBlogs from './components/MyBlogs.jsx'
 
 const router = createBrowserRouter(createRoutesFromElements(
   <Route path='/' element={<App />}>
     <Route path='' element={<Home />}></Route>
     <Route exact path='blogs' element={<Blogs />}></Route>
+    <Route exact path='myblogs' element={<MyBlogs />}></Route>
     <Route exact path='blogs/updateblog/:blogid' element={<UpdateBlog />}></Route>
     <Route path='login' element={<Login />}></Route>
     <Route path='signup' element={<Signup />}></Route>
     <Route path='createblog' element={<CreateBlog />}></Route>
+    <Route path='*' element={<PageNotFound />}></Route>
   </Route>
 ))
 

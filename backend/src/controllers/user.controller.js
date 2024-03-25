@@ -1,4 +1,3 @@
-import jwt from 'jsonwebtoken'
 import { User } from '../models/user.model.js'
 import { ApiError } from '../utility/ApiError.js'
 import { ApiResponse } from '../utility/ApiResponse.js'
@@ -26,7 +25,7 @@ const registerUser = async (req, res) => {
     try {
 
         const { username, fullname, email, password } = req.body
-        const isAdmin = false;
+        let isAdmin = false;
 
         if(username.includes("admin@")){
             isAdmin=true
@@ -100,7 +99,7 @@ const loginUser = async (req, res) => {
 
         const { accesstoken, refreshtoken } = await generateTokens(verifyUser[0]._id)
 
-        const loggedInUser = await User.findById(verifyUser._id).select("-password -refreshtoken")
+        const loggedInUser = await User.findById(verifyUser[0]._id).select("-password -refreshtoken")
 
         // options for cookies for security so, that only server can modify these cookies.
         const options = {
@@ -153,4 +152,23 @@ const logoutUser = async (req, res) => {
     }
 }
 
-export {registerUser, loginUser, logoutUser}
+const isLoggedIn = async(req, res) =>{
+    try {
+        console.log("checking user login status...")
+        var loginstatus = true
+        if(!req.cookies.accesstoken){
+            loginstatus = false
+            console.log("user is logged out !")
+        }
+
+        return res
+            .status(200)
+            .json(new ApiResponse(200, {loginstatus:loginstatus}, "User status sent !"))
+        
+    } catch (error) {
+        throw new ApiError(500, 'Internal Server Error !!!')
+        
+    }
+}
+
+export {registerUser, loginUser, logoutUser, isLoggedIn}
