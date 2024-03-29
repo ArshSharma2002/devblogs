@@ -22,6 +22,9 @@ const blogSchema = new mongoose.Schema({
     },
     source:{
         type: String,
+    },
+    thumbnail:{
+        type: String
     }
 
 }, 

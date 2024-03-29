@@ -2,9 +2,10 @@ import {ApiError} from '../utility/ApiError.js'
 import {ApiResponse} from '../utility/ApiResponse.js'
 import { Blog } from '../models/blog.model.js'
 
-
 const createBlogs = async (req, res) =>{
     try {
+        // console.log("Req. File: " + req.file)
+        console.log("Req. File Name: " + req.file.filename)
         const {_id} = req.user
         if (!_id) {
             throw new ApiError(400, "User not authenticated !!!")
