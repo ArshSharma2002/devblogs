@@ -38,7 +38,7 @@ function BlogPost({ blog, handleOnDelete }) {
                         </ul>
                     </div>}
                 </div>
-                <img src={blogimage} className="card-img-top" alt="Image loading..." />
+                <img src={blog.thumbnail?blog.thumbnail:blogimage} width="100" height="180" className="card-img-top" alt="Image loading..." />
                 <div className="card-body">
                     <p className="card-text">
                         {blog.description.substring(0, 50)} ...

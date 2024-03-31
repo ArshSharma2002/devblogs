@@ -16,6 +16,9 @@ const blogSchema = new mongoose.Schema({
         unique: true,
         required: true
     },
+    thumbnail:{
+        type: String
+    },
     tag:{
         type: String,
         unique: true
