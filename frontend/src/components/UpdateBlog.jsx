@@ -12,7 +12,7 @@ function UpdateBlog() {
 
     const updateBlog = async (blogid) => {
         try {
-            console.log("updating blogs...")
+            console.log("updating blog...")
             const url = `http://localhost:8000/api/v1/blogs/update/${blogid}`
             const response = await fetch(url, {
                 method: 'PUT',
@@ -51,7 +51,7 @@ function UpdateBlog() {
                             <div className="bg-light text-black">
                                 <div className="row g-0">
                                     <div className="col-lg-6">
-                                        <div className="card-body p-md-5 mx-md-4">
+                                        <div className="card-body p-md-5 mx-md-4 p-5">
                                             <div className="text-center">
                                                 <h4 className="mt-1 mb-5 pb-1">Edit Blog</h4>
                                             </div>

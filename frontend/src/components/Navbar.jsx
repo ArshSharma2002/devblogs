@@ -42,7 +42,7 @@ function Navbar({ isLoggedin, setIsLoggedin }) {
             data-bs-target="#navbarExample" aria-controls="navbarExample" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
-          <a className="navbar-brand text-light"><img id='navlogo' className='m-2' src={navlogo}></img></a>
+          <Link className="navbar-brand text-light" to='/' ><img id='navlogo' className='m-2' src={navlogo}></img></Link>
           <div className="collapse navbar-collapse mx-5" id="navbarExample">
             <ul className="navbar-nav me-auto mb-0">
               <li className="nav-item">
@@ -61,10 +61,10 @@ function Navbar({ isLoggedin, setIsLoggedin }) {
             </ul>
             <div className="d-flex align-items-center flex-column flex-lg-row">
               {!isLoggedin ? <>
-                <button className="btn auth-btn btn-outline-light me-4" type=""><Link className='btn-auth text-decoration-none' to="/login" >Login</Link></button>
-                <button className="btn auth-btn btn-outline-light me-4" type=""><Link className='btn-auth text-decoration-none' to="/signup" >Signup</Link></button>
+                <button className="btn auth-btn btn-outline-light me-4 m-2" type=""><Link className='btn-auth text-decoration-none' to="/login" >Login</Link></button>
+                <button className="btn auth-btn btn-outline-light me-4 m-2" type=""><Link className='btn-auth text-decoration-none' to="/signup" >Signup</Link></button>
               </> :
-                <button className="btn auth-btn btn-outline-light" type="button" onClick={handleOnLogout}>Logout</button>}
+                <button className="btn auth-btn btn-outline-light m-4" type="button" onClick={handleOnLogout}>Logout</button>}
             </div>
           </div>
         </div>

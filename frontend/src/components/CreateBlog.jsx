@@ -57,7 +57,7 @@ function CreateBlog() {
     setSource('')
     setTag('')
     setFile('')
-    navigate('/myblogs')
+    navigate('/blogs')
   }
 
 
@@ -70,7 +70,7 @@ function CreateBlog() {
               <div className="bg-light text-black">
                 <div className="row g-0">
                   <div className="col-lg-6">
-                    <div className="card-body p-md-5 mx-md-4">
+                    <div className="card-body p-md-5 mx-md-4 p-5">
 
                       <div className="text-center">
                         <h4 className="mt-1 mb-5 pb-1">Create Blog</h4>
@@ -113,8 +113,8 @@ function CreateBlog() {
                     </div>
                   </div>
 
-                  <div className="col-lg-6 d-flex align-items-center">
-                    <div className="text-white px-3 py-4 p-md-5 mx-md-4">
+                  <div className="col-lg-6 d-flex align-items-center justify-content-center">
+                    <div className="text-white px-3 py-4 p-md-5 mx-md-4 d-flex align-items-center justify-content-center">
                       <img className="illustrations bg-white huerotate" src={blogImg}></img>
                     </div>
                   </div>

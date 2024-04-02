@@ -17,14 +17,18 @@ function BlogPost({ blog, handleOnDelete }) {
 
     }, [])
 
+    const [day, setDay] = useState(new Date(blog.createdAt.substring(0, 10)).getDate())
+    const [month, setMonth] = useState(new Date(blog.createdAt.substring(0, 10)).toLocaleString('default', { month: 'long' }))
+    const [year, setYear] = useState(new Date(blog.createdAt.substring(0, 10)).getFullYear())
+
 
     return (
         <div className='container max-w-xs m-5'>
             <div className="card bg-violet transition ease-in-out delay-150 -translate-y-px-hover duration-300 scale-105-hover text-light">
                 <div className="card-header d-flex align-items-center">
-                    <div className="ms-3">
-                        <h6 className="mb-0 fs-sm">{blog.title}</h6>
-                        <span className="text-discovery fs-sm">{blog.createdAt.substring(0, 10)}</span>
+                    <div className="ms-3 ">
+                        <h6 className="mb-0 fs-md">{blog.title}</h6>
+                        <span className="text-discovery fs-sm">{`${month} ${day}`}</span>
                     </div>
                     {userBlogs && <div className="dropdown-center  ms-auto">
                         <button className="btn text-muted" type="btn" data-bs-toggle="dropdown" aria-expanded="false">
@@ -38,16 +42,18 @@ function BlogPost({ blog, handleOnDelete }) {
                         </ul>
                     </div>}
                 </div>
-                <img src={blog.thumbnail?blog.thumbnail:blogimage} width="100" height="180" className="card-img-top" alt="Image loading..." />
+                <img src={blog.thumbnail ? blog.thumbnail : blogimage} width="100" height="180" className="card-img-top" alt="Image loading..." />
                 <div className="card-body">
                     <p className="card-text">
                         {blog.description.substring(0, 50)} ...
                     </p>
                 </div>
                 <div className="card-footer d-flex">
-                    <button className="btn btn-link p-0 me-auto fw-bold text-decoration-none " href="#">Read Blog</button>
-                    {/* <button className="btn btn-subtle" type="button"><i className="fas fa-heart fa-lg"></i></button>
-                    <button className="btn btn-subtle" type="button"><i className="fas fa-share fa-lg"></i></button> */}
+                    <button className="btn btn-link p-0 me-auto fw-bold text-decoration-none " href="#">
+                        <Link className='text-white text-decoration-none' to={`/blogs/readblog/${blog._id}`} >Read Blog</Link>
+                    </button>
+                    <button className="btn btn-subtle" type="button"><i className="fas fa-heart fa-lg"></i></button>
+                    <button className="btn btn-subtle" type="button"><i className="fas fa-share fa-lg"></i></button>
                 </div>
             </div>
         </div>

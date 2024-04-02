@@ -21,7 +21,8 @@ body {
   padding: 0;
   box-sizing: border-box;
   background: fixed;
-  background-image: url('./images/devblog-bg-4.jpg');
+  background-image: url('./images/devblog-bg.jpg');
+  /* background-image: url('./images/purple-bg-2.jpg'); */
   background-size: cover;
 }
 
@@ -34,6 +35,18 @@ body {
   padding: 10px;
   text-align: center;
   font-family: fangsong;
+}
+
+.blog-title{
+  color: white;
+  font-weight: 600;
+  font-size: 2rem;
+  text-shadow: 1px 4px 4px black;
+}
+
+.blog-desc{
+  color: white;
+  text-shadow:0.5px 0.5px black;
 }
 
 .illustrations{
@@ -56,7 +69,7 @@ div.card:hover {
 }
 
 header {
-  backdrop-filter: blur(50px);
+  backdrop-filter: blur(6px);
   height: 90vh;
 }
 
