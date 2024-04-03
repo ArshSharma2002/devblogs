@@ -13,7 +13,7 @@ function UpdateBlog() {
     const updateBlog = async (blogid) => {
         try {
             console.log("updating blog...")
-            const url = `http://localhost:8000/api/v1/blogs/update/${blogid}`
+            const url = `https://devblogs-backend.vercel.app/api/v1/blogs/update/${blogid}`
             const response = await fetch(url, {
                 method: 'PUT',
                 redirect: 'follow',

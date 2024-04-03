@@ -21,7 +21,7 @@ function CreateBlog() {
     try {
       console.log("Creating blog...")
 
-      const url = "http://localhost:8000/api/v1/blogs/create";
+      const url = "https://devblogs-backend.vercel.app/api/v1/blogs/create";
       const formData = new FormData()
       formData.append("thumbnail", file)
       formData.append("title", title)
