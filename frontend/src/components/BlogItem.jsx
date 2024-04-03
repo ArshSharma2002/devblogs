@@ -43,11 +43,11 @@ function BlogItem() {
 
     return (
         <div className='m-5 p-4'>
-            <div class="d-flex justify-content-center align-items-center flex-direction-row flex-wrap">
+            <div class=" mx-5 d-flex justify-content-start align-items-center flex-direction-row flex-wrap">
                 <div class="p-4">
                     <img src={blog.thumbnail} className='rounded-3' height="50%" width="60%" />
                 </div>
-                <div class="m-2 p-4">
+                <div class="m-2 p-4 ">
                     <h2 class="blog-title">{blog.title}</h2>
                     <p className='text-white' >{`${new Date(blog.createdAt.substring(0, 10)).getDate()} ${new Date(blog.createdAt.substring(0, 10)).toLocaleString('default', { month: 'long' })}`} | {blog.source}</p>
                     <p class="blog-desc lead fw-normal py-4">{blog.description}</p>

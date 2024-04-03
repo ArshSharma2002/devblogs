@@ -57,7 +57,7 @@ function CreateBlog() {
     setSource('')
     setTag('')
     setFile('')
-    navigate('/blogs')
+    // navigate('/blogs')
   }
 
 

@@ -99,7 +99,7 @@ function Signup() {
 
                         <div className="text-center pt-1 mb-5 pb-1">
                           <button className="btn btn-lg btn-primary m-3 bg-violet" type="submit">Signup</button>
-                          <a className="text-muted" href="#!">Forgot password?</a>
+                          {/* <a className="text-muted" href="#!">Forgot password?</a> */}
                         </div>
 
                         {/* <div className="d-flex align-items-center justify-content-center pb-4">

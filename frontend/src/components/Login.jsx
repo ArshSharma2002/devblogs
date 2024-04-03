@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import loginImg from '../images/illustrations/login.gif'
-import { useNavigate, useOutletContext } from 'react-router-dom'
+import { Link, useNavigate, useOutletContext } from 'react-router-dom'
 
 function Login() {
 
@@ -11,7 +11,7 @@ function Login() {
 
     const navigate = useNavigate()
 
-    const loginUser = async ({username:username, email: email, password: password}) => {
+    const loginUser = async ({ username: username, email: email, password: password }) => {
         try {
             console.log("user login...")
             const url = 'http://localhost:8000/api/v1/user/login'
@@ -40,14 +40,15 @@ function Login() {
     const handleOnLogin = async (e) => {
         e.preventDefault()
         console.log("logging in ...")
-        loginUser({username:username, email: email, password: password})
+        loginUser({ username: username, email: email, password: password })
         console.log("User logged in !")
         setUsername('')
         setEmail('')
         setPassword('')
         navigate('/')
-        
+
     }
+
 
     return (
         <section className="h-100 gradient-form">
@@ -60,7 +61,7 @@ function Login() {
                                     <div className="text-white px-3 py-4 p-md-5 mx-md-4 d-flex align-items-center justify-content-center">
                                         {/* <h4 className="mb-4 text-dark">Login now on DevBlogs !</h4> */}
                                         <img className="text-center illustrations huerotate" src={loginImg}></img>
-                                        
+
                                     </div>
                                 </div>
                                 <div className="col-lg-6">
@@ -85,12 +86,13 @@ function Login() {
                                             </div>
                                             <div className="text-center pt-1 mb-5 pb-1">
                                                 <button className="btn btn-lg btn-primary m-3 bg-violet" type="submit" >Login</button>
-                                                <a className="text-muted" href="#!">Forgot password?</a>
+                                                
+                                                {/* <a className="text-muted" href="#!">Forgot password?</a> */}
                                             </div>
-                                            {/* <div className="d-flex align-items-center justify-content-center pb-4">
+                                            <div className="d-flex align-items-center justify-content-center pb-4">
                                                     <p className="mb-0 me-2">Don't have an account?</p>
-                                                    <button type="button" className="btn btn-outline-danger">Sign up</button>
-                                                </div> */}
+                                                    <Link type="button" className="btn btn-outline-danger"to='/signup' >Sign up</Link>
+                                                </div>
                                         </form>
                                     </div>
                                 </div>
