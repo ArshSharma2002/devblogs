@@ -9,7 +9,7 @@ function BlogItem() {
     const getBlogById = async (blogid) => {
         try {
             console.log("fetching blog...")
-            const url = `https://devblogs-backend.vercel.app/api/v1/blogs/${blogid}`
+            const url = `http://localhost:8000/api/v1/blogs/${blogid}`
             const response = await fetch(url, {
                 method: 'GET',
                 redirect: 'follow',

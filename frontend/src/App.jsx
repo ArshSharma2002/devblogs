@@ -12,7 +12,7 @@ function App() {
   const userLoggedIn = async () => {
     try {
       console.log("login status checking...")
-      const url = 'https://devblogs-backend.vercel.app/api/v1/user/isloggedin'
+      const url = 'http://localhost:8000/api/v1/user/isloggedin'
       const response = await fetch(url, {
         method: 'GET',
         redirect: 'follow',

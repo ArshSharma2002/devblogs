@@ -9,7 +9,7 @@ function Navbar({ isLoggedin, setIsLoggedin }) {
   const handleOnLogout = async () => {
     try {
       // console.log("user logout...")
-      const url = 'https://devblogs-backend.vercel.app/api/v1/user/logout'
+      const url = 'http://localhost:8000/api/v1/user/logout'
       const response = await fetch(url, {
         method: 'POST',
         redirect: 'follow',

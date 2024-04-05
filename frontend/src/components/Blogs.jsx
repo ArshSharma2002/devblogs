@@ -37,7 +37,7 @@ function Blogs() {
   const getBlogs = async () => {
     try {
       console.log("fetching blogs...")
-      const url = 'https://devblogs-backend.vercel.app/api/v1/blogs'
+      const url = 'http://localhost:8000/api/v1/blogs'
       const response = await fetch(url, {
         method: 'GET',
         redirect: 'follow',

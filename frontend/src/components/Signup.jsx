@@ -19,7 +19,7 @@ function Signup() {
     try {
       console.log("registering user...")
 
-      const url = "https://devblogs-backend.vercel.app/api/v1/user/register";
+      const url = "http://localhost:8000/api/v1/user/register";
       const response = await fetch(url, {
         method: 'POST', 
         headers: {
