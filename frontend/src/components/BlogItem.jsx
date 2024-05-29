@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { BASE_URL } from '../../helper.js'
 
 function BlogItem() {
 
@@ -9,7 +10,7 @@ function BlogItem() {
     const getBlogById = async (blogid) => {
         try {
             console.log("fetching blog...")
-            const url = `http://localhost:8000/api/v1/blogs/${blogid}`
+            const url = `${BASE_URL}/api/v1/blogs/${blogid}`
             const response = await fetch(url, {
                 method: 'GET',
                 redirect: 'follow',

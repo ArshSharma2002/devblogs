@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import { BASE_URL } from '../../helper.js'
 
 function UpdateBlog() {
 
@@ -13,7 +14,7 @@ function UpdateBlog() {
     const updateBlog = async (blogid) => {
         try {
             console.log("updating blog...")
-            const url = `http://localhost:8000/api/v1/blogs/update/${blogid}`
+            const url = `${BASE_URL}/api/v1/blogs/update/${blogid}`
             const response = await fetch(url, {
                 method: 'PUT',
                 redirect: 'follow',

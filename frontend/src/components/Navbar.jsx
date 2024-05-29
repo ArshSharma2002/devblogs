@@ -1,6 +1,7 @@
 import React from 'react'
 import navlogo from '../images/logos/logo-white-transparent.png'
 import { Link, useNavigate } from 'react-router-dom'
+import { BASE_URL } from '../../helper.js'
 
 function Navbar({ isLoggedin, setIsLoggedin }) {
 
@@ -9,7 +10,7 @@ function Navbar({ isLoggedin, setIsLoggedin }) {
   const handleOnLogout = async () => {
     try {
       // console.log("user logout...")
-      const url = 'http://localhost:8000/api/v1/user/logout'
+      const url = `${BASE_URL}/api/v1/user/logout`
       const response = await fetch(url, {
         method: 'POST',
         redirect: 'follow',

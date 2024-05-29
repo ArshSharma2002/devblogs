@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import BlogPost from './BlogPost'
 import { useOutletContext } from 'react-router-dom'
 import Login from './Login'
+import { BASE_URL } from '../../helper.js'
 
 function MyBlogs() {
 
@@ -15,7 +16,7 @@ function MyBlogs() {
       if (!confirmDel) {
         return;
       }
-      const url = `http://localhost:8000/api/v1/blogs/delete/${blogid}`
+      const url = `${BASE_URL}/api/v1/blogs/delete/${blogid}`
       const response = await fetch(url, {
         method: 'DELETE',
         redirect: 'follow',
@@ -37,7 +38,7 @@ function MyBlogs() {
   const getMyBlogs = async () => {
     try {
       console.log("fetching my blogs...")
-      const url = 'http://localhost:8000/api/v1/blogs/myblogs'
+      const url = `${BASE_URL}/api/v1/blogs/myblogs`
       const response = await fetch(url, {
         method: 'GET',
         redirect: 'follow',

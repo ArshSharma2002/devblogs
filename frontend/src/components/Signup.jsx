@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import signupImg from '../images/illustrations/signup.gif'
 import { useNavigate } from 'react-router-dom'
+import { BASE_URL } from '../../helper.js'
 
 
 
@@ -19,7 +20,7 @@ function Signup() {
     try {
       console.log("registering user...")
 
-      const url = "http://localhost:8000/api/v1/user/register";
+      const url = `${BASE_URL}/api/v1/user/register`
       const response = await fetch(url, {
         method: 'POST', 
         headers: {

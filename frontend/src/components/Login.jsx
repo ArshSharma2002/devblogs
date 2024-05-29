@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import loginImg from '../images/illustrations/login.gif'
 import { Link, useNavigate, useOutletContext } from 'react-router-dom'
+import { BASE_URL } from '../../helper.js'
 
 function Login() {
 
@@ -14,7 +15,7 @@ function Login() {
     const loginUser = async ({ username: username, email: email, password: password }) => {
         try {
             console.log("user login...")
-            const url = 'http://localhost:8000/api/v1/user/login'
+            const url = `${BASE_URL}/api/v1/user/login`
             const response = await fetch(url, {
                 method: 'POST',
                 redirect: 'follow',

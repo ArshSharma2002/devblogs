@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Footer from './components/Footer'
 import Navbar from './components/Navbar'
 import { Outlet } from 'react-router-dom'
+import {BASE_URL} from '../helper.js'
 
 
 
@@ -12,7 +13,7 @@ function App() {
   const userLoggedIn = async () => {
     try {
       console.log("login status checking...")
-      const url = 'http://localhost:8000/api/v1/user/isloggedin'
+      const url = `${BASE_URL}/api/v1/user/isloggedin`
       const response = await fetch(url, {
         method: 'GET',
         redirect: 'follow',

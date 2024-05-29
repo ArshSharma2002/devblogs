@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import blogImg from '../images/illustrations/createblog.gif'
 import { useNavigate, useOutletContext } from 'react-router-dom'
 import Login from './Login'
+import { BASE_URL } from '../../helper.js'
 
 function CreateBlog() {
 
@@ -21,7 +22,7 @@ function CreateBlog() {
     try {
       console.log("Creating blog...")
 
-      const url = "http://localhost:8000/api/v1/blogs/create";
+      const url = `${BASE_URL}/api/v1/blogs/create`
       const formData = new FormData()
       formData.append("thumbnail", file)
       formData.append("title", title)
